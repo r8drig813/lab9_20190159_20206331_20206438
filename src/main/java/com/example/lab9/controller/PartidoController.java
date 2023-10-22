@@ -1,14 +1,17 @@
 package com.example.lab9.controller;
 
+
 import com.example.lab9.entity.*;
 import com.example.lab9.repository.EquipoRepository;
 import com.example.lab9.repository.HistorialpartidoRepository;
 import com.example.lab9.repository.ParticipantespartidoRepository;
+
 import com.example.lab9.repository.PartidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.time.Instant;
 import java.util.HashMap;
@@ -26,6 +29,7 @@ public class PartidoController {
     ParticipantespartidoRepository participantespartidoRepository;
     @Autowired
     EquipoRepository equipoRepository;
+
 
     // CREAR
     @PostMapping(value = {"/registro"})
