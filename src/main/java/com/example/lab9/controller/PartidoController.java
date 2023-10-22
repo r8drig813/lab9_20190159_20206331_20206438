@@ -120,24 +120,25 @@ public class PartidoController {
     */
     //LISTAR HISTORIAL DE PARTIDOS
     @GetMapping(value = {"/gethistorialpartidos"})
-    public List<Historialpartido> listaHistorial(@RequestParam(value = "idequipo", required = false) String idStr) {
+    public ResponseEntity<HashMap<String, Object>> listaHistorial(@RequestParam(value = "idequipo", required = false) String idStr) {
+        HashMap<String,Object> respuesta = new HashMap<>();
 
 
-        try {
-            HashMap<String, Object> respuesta = new HashMap<>();
+        try{
 
             Optional<Equipo> optionalEquipo = equipoRepository.findById(Integer.parseInt(idStr));
-            if (optionalEquipo.isEmpty()) {
-                //List<Historialpartido> listaVacia = null;
-                respuesta.put("result", "no existe");
-                return null;
+            if(optionalEquipo.isPresent()){
+                respuesta.put("Historial",historialpartidoRepository.listaHistorial(Integer.parseInt(idStr)));
+                return ResponseEntity.status(HttpStatus.OK).body(respuesta);
+
             } else {
-                return historialpartidoRepository.listaHistorial(Integer.parseInt(idStr));
+                respuesta.put("error", "No se encontro el equipo indicado");
+                return ResponseEntity.badRequest().body(respuesta);
             }
-        } catch (NumberFormatException e) {
-            return null;
-        }
-        //return historialpartidoRepository.findAll();
+        }catch (NumberFormatException e){
+            respuesta.put("Historial",historialpartidoRepository.findAll());
+            return ResponseEntity.status(HttpStatus.OK).body(respuesta);        }
+
     }
 
 }
