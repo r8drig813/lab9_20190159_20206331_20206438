@@ -29,8 +29,6 @@ public class    ParticipanteController {
     //OBTENER
     @GetMapping(value = "/{id}")
     public ResponseEntity<HashMap<String, Object>> buscarParticipante(@PathVariable("id") String idStr) {
-
-
         try {
             int id = Integer.parseInt(idStr);
             Optional<Participante> byId = participanteRepository.findById(id);
