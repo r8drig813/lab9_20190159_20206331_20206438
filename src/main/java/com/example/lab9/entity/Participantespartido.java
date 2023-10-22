@@ -15,11 +15,11 @@ public class Participantespartido {
     @Column(name = "idparticipantesPartido", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "partido_idpartido", nullable = false)
     private Partido partidoIdpartido;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "participante_idparticipante", nullable = false)
     private Participante participanteIdparticipante;
 

@@ -16,7 +16,7 @@ public class Participante {
     @Column(name = "idparticipante", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "equipo", nullable = false)
     private Equipo equipo;
 

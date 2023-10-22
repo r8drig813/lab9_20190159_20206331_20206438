@@ -16,11 +16,11 @@ public class Historialpartido {
     @Column(name = "idhistorialPartidos", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "partido_idpartido", nullable = false)
     private Partido partidoIdpartido;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "deporte_iddeporte", nullable = false)
     private Deporte deporteIddeporte;
 
