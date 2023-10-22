@@ -3,6 +3,7 @@ package com.example.lab9.controller;
 import com.example.lab9.entity.Equipo;
 import com.example.lab9.repository.EquipoRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,7 +51,7 @@ public class EquipoController {
     }
 
     // CREAR
-    @PostMapping(value = {"", "/registro"})
+    @PostMapping(value = {"", "/registro"}, produces = MediaType.APPLICATION_JSON_VALUE+"; charset=utf-8")
     public ResponseEntity<HashMap<String, Object>> guardarEquipo(
             @RequestBody Equipo equipo,
             @RequestParam(value = "fetchId", required = false) boolean fetchId) {
