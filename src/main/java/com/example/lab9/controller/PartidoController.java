@@ -1,17 +1,14 @@
 package com.example.lab9.controller;
 
-
 import com.example.lab9.entity.*;
 import com.example.lab9.repository.EquipoRepository;
 import com.example.lab9.repository.HistorialpartidoRepository;
 import com.example.lab9.repository.ParticipantespartidoRepository;
-
 import com.example.lab9.repository.PartidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.time.Instant;
 import java.util.HashMap;
@@ -29,7 +26,6 @@ public class PartidoController {
     ParticipantespartidoRepository participantespartidoRepository;
     @Autowired
     EquipoRepository equipoRepository;
-
 
     // CREAR
     @PostMapping(value = {"/registro"})
@@ -88,7 +84,22 @@ public class PartidoController {
 
     //LISTAR HISTORIAL DE PARTIDOS
     @GetMapping(value = {"/gethistorialpartidos"})
-    public List<Historialpartido> listaHistorial() {
+    public List<Historialpartido> listaHistorial(@RequestParam("idequipo") String idStr) {
+
+
+        try{
+            HashMap<String,Object> respuesta = new HashMap<>();
+
+            Optional<Equipo> optionalEquipo = equipoRepository.findById(Integer.parseInt(idStr));
+            if(idStr.isEmpty() || idStr.isBlank()){
+                respuesta.put("result", "no existe");
+            } else if (optionalEquipo.isPresent()) {
+
+                return historialpartidoRepository.listaHistorial(Integer.parseInt(idStr));
+            }
+        }catch (NumberFormatException e){
+            return historialpartidoRepository.findAll();
+        }
         return historialpartidoRepository.findAll();
     }
 

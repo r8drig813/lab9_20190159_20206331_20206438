@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 
 public interface ParticipantespartidoRepository extends JpaRepository<Participantespartido, Integer> {
-    List<Participante> findAllByPartidoIdpartido(Partido partido);
+    List<Participante>  findAllByPartidoIdpartido(Partido partido);
    // List<Participante> findAllByPartidoIdpartidoAnd(Partido partido);
 
 
