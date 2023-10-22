@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/participante")
-public class ParticipanteController {
+public class    ParticipanteController {
 
     final ParticipanteRepository participanteRepository;
 
