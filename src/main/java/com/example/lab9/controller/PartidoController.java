@@ -84,17 +84,16 @@ public class PartidoController {
 
     //LISTAR HISTORIAL DE PARTIDOS
     @GetMapping(value = {"/gethistorialpartidos"})
-    public List<Historialpartido> listaHistorial(@RequestParam("idequipo") String idStr) {
+    public List<Historialpartido> listaHistorial(@RequestParam(value = "idequipo", required = false) String idStr) {
 
 
         try{
             HashMap<String,Object> respuesta = new HashMap<>();
 
             Optional<Equipo> optionalEquipo = equipoRepository.findById(Integer.parseInt(idStr));
-            if(idStr.isEmpty() || idStr.isBlank()){
+            if(optionalEquipo.isEmpty()){
                 respuesta.put("result", "no existe");
-            } else if (optionalEquipo.isPresent()) {
-
+            } else {
                 return historialpartidoRepository.listaHistorial(Integer.parseInt(idStr));
             }
         }catch (NumberFormatException e){
