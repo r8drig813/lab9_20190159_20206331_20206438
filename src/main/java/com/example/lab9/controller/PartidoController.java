@@ -81,4 +81,11 @@ public class PartidoController {
         return participantespartidoRepository.findAll();
     }
 
+
+    //LISTAR HISTORIAL DE PARTIDOS
+    @GetMapping(value = {"/gethistorialpartidos"})
+    public List<Historialpartido> listaHistorial() {
+        return historialpartidoRepository.findAll();
+    }
+
 }
